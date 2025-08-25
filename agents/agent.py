@@ -5,6 +5,7 @@ Follows ADK multi-agent structure with sub-agent delegation
 
 from google.adk import Agent
 from .sub_agents.content_intake.agent import content_intake_agent
+from .sub_agents.preprocessing_context.agent import preprocessing_context_agent
 
 
 # Root agent that delegates to specialized sub-agents
@@ -16,16 +17,21 @@ root_agent = Agent(
     
     Your role is to:
     1. Analyze incoming content (text, images, audio, video) for potential misinformation
-    2. Delegate content processing to specialized sub-agents based on content type
-    3. Coordinate the overall analysis workflow
+    2. Delegate content processing to specialized sub-agents in sequence
+    3. Coordinate the overall analysis workflow from intake through final assessment
     4. Provide comprehensive misinformation assessment results
     
-    When users submit content for analysis:
-    - First delegate to the content intake agent to process and structure the content
-    - Then proceed with fact-checking and credibility assessment
-    - Provide clear, actionable results about the content's reliability
+    **Agent Workflow**:
+    1. **Content Intake Agent**: First delegate to process and structure raw content
+    2. **Preprocessing & Context Agent**: Then delegate for summarization and context analysis
+    3. **Final Assessment**: Synthesize results to provide misinformation evaluation
     
-    Always be thorough but concise in your analysis. Focus on providing evidence-based 
-    assessments while explaining your reasoning clearly.""",
-    sub_agents=[content_intake_agent],
+    When users submit content for analysis:
+    - Start with content intake agent to process the raw content
+    - Send structured content to preprocessing agent for summarization and context
+    - Use both analyses to provide comprehensive misinformation assessment
+    - Always explain your reasoning and provide evidence-based conclusions
+    
+    Focus on providing clear, actionable results about content reliability while maintaining objectivity.""",
+    sub_agents=[content_intake_agent, preprocessing_context_agent],
 )
