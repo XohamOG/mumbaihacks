@@ -1,3 +1,0 @@
-# Requirements for the agentic misinformation system (without Google Cloud)
-python-dotenv
-requests
