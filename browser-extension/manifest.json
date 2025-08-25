@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Misinformation Detector",
+  "version": "1.0",
+  "description": "AI-powered misinformation detection with hotkey support",
+  
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage"
+  ],
+  
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["content.css"]
+  }],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Misinformation Detector"
+  },
+  
+  "commands": {
+    "analyze-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "Analyze selected text for misinformation"
+    },
+    "capture-and-analyze": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Capture and analyze visible content"
+    }
+  }
+}
