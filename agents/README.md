@@ -1,30 +1,24 @@
-# Agentic AI Misinformation Detection System
+# Advanced Misinformation Detection System
 
-A comprehensive multi-agent system designed to detect, verify, and educate users about misinformation across various platforms.
+A sophisticated multi-agent system built with Google's Agent Development Kit (ADK) for comprehensive misinformation detection and fact-checking.
 
 ## System Architecture
 
-### 🎯 Root Agent (Orchestrator)
-**File**: `orchestrator_agent.py`
-- **Role**: Delegates tasks to specialized sub-agents
-- **Workflow**: Content → Intake → Context → Fact Check → Knowledge → Alerts
-- **Features**: 
-  - Manages agent coordination
-  - Handles unsolved queries
-  - Processes user feedback
-  - Synthesizes final results
+This system implements a **Sequential Pipeline** with **Parallel Fact-Checking** to provide thorough misinformation analysis:
 
-### 🔍 Sub-Agents
+### Main Pipeline (Sequential)
+1. **Content Intake** → **Preprocessing** → **Fact Checking** → **Knowledge Synthesis** → **Final Report**
 
-#### 1. Content Intake Agent
-**File**: `sub_agents/content_intake_agent.py`
-- **Role**: Processes all content forms (video, image, audio, text) and prepares for analysis
-- **Capabilities**:
-  - Text processing and claim extraction
-  - Image OCR and object detection
-  - Video transcript generation
-  - Audio speech-to-text conversion
-  - URL content fetching
+### Parallel Fact-Checking Sub-System
+The fact-checking stage runs four specialized agents in parallel:
+- 🖼️ **AI Image Authentication** - Detects deepfakes and AI-generated content
+- 🔍 **Source Verification** - Evaluates source credibility and authority
+- ⏰ **Temporal Verification** - Confirms timing and chronological accuracy
+- 📱 **Social Media Consensus** - Analyzes real-time social media data
+- 🧠 **Fact Synthesis** - Combines all parallel results into final assessment
+
+### Knowledge Synthesis Stage
+- 📋 **Knowledge Agent** - Creates structured, user-friendly reports with detailed reasoning and educational insights
 
 #### 2. Preprocessing & Context Agent  
 **File**: `sub_agents/preprocessing_context_agent.py`
