@@ -5,7 +5,22 @@ Provides context analysis and content preprocessing for misinformation detection
 Following ADK agent structure requirements
 """
 
-from google.adk import Agent
+try:
+    from google.adk import Agent
+except ImportError:
+    # Fallback for when google.adk is not available
+    try:
+        import sys
+        import os
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+        from mock_adk import Agent
+    except ImportError:
+        class Agent:
+            def __init__(self, name, model, description, instruction):
+                self.name = name
+                self.model = model
+                self.description = description
+                self.instruction = instruction
 
 
 # Preprocessing and context agent that analyzes structured content
